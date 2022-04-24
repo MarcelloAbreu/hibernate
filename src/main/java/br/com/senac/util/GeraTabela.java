@@ -9,7 +9,7 @@ import javax.persistence.*;
 
 /**
  *
- * @author Silvio
+ * @author marcello
  */
 public class GeraTabela {
     public static void main(String[] args) {

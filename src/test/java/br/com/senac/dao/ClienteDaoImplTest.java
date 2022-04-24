@@ -1,9 +1,7 @@
 package br.com.senac.dao;
 
 import br.com.senac.entidade.Cliente;
-import br.com.senac.entidade.Usuario;
 import org.hibernate.Session;
-import org.junit.Test;
 import static org.junit.Assert.*;
 
 /**

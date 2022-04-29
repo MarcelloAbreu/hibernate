@@ -64,7 +64,12 @@ public class ClienteDaoImplTest {
         sessao = HibernateUtil.abrirConexao();
         Query<Cliente> consulta = sessao.createQuery(hql);
         List<Cliente> clientes = consulta.list();
-        
+        sessao.close();
+        if(clientes.isEmpty()){
+            testSalvar();
+        }else{
+            cliente = clientes.get(0);
+        } 
         return cliente;
     }
 }

@@ -66,7 +66,12 @@ public class UsuarioDaoImplTest {
         sessao = HibernateUtil.abrirConexao();
         Query<Usuario> consulta = sessao.createQuery(hql);
         List<Usuario> usuarios = consulta.list();
-        
+        sessao.close();
+        if(usuarios.isEmpty()){
+            testSalvar();
+        }else{
+            usuario = usuarios.get(0);
+        }
         return usuario;
     }
 }

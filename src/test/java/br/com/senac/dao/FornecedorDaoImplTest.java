@@ -2,7 +2,9 @@ package br.com.senac.dao;
 
 import br.com.senac.entidade.Fornecedor;
 import br.com.senac.util.GeradorUtil;
+import java.util.List;
 import org.hibernate.Session;
+import org.hibernate.query.Query;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -67,9 +69,18 @@ public class FornecedorDaoImplTest {
     }
     
     public Fornecedor buscarFornecedor(){
+        //select from * fornecedor;
+        String hql = "from Fornecedor";
+        sessao = HibernateUtil.abrirConexao();
+        Query<Fornecedor> consulta = sessao.createQuery(hql);
+        List<Fornecedor> fornecedores = consulta.list();
+        sessao.close();
+        if(fornecedores.isEmpty()){
+           testSalvarOuAlterar();
+        }else{
+            fornecedor = fornecedores.get(0);
+        }
         
-        return null;
+        return fornecedor;
     }
-            
-    
 }

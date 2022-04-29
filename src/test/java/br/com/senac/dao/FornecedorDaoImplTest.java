@@ -49,22 +49,22 @@ public class FornecedorDaoImplTest {
     //@Test
     public void testPesquisaPorId() {
         System.out.println("Pesquisa Por Id do Fornecedor");
-        //buscarFornecedor();
+        buscarFornecedor();
         sessao = HibernateUtil.abrirConexao();
-        fornecedorDao.pesquisaPorId(fornecedor.getId(), sessao);
+        Fornecedor fornecedorPesquisado = fornecedorDao.pesquisaPorId(fornecedor.getId(), sessao);
         sessao.close();
-        //assertNotNull(buscarfornecedor);
+        assertNotNull(fornecedorPesquisado);
         
     }
     
     //@Test
     public void testPesquisaPorNome() {
         System.out.println("Pesquisa Por Nome do Fornecedor");
-        //buscarFornecedor();
+        buscarFornecedor();
         sessao = HibernateUtil.abrirConexao();
-        fornecedorDao.pesquisarPorNome(fornecedor.getNome(), sessao);
+        List<Fornecedor> nomePesquisado = fornecedorDao.pesquisarPorNome(fornecedor.getNome(), sessao);
         sessao.close();
-        //assertNotNull(buscarfornecedor);
+        assertNotNull(nomePesquisado);
 
     }
     

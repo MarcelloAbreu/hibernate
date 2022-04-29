@@ -1,7 +1,9 @@
 package br.com.senac.dao;
 
 import br.com.senac.entidade.Usuario;
+import java.util.List;
 import org.hibernate.Session;
+import org.hibernate.query.Query;
 import static org.junit.Assert.assertNotNull;
 import org.junit.Test;
 
@@ -30,8 +32,13 @@ public class UsuarioDaoImplTest {
     
     //@Test
     public void testPesquisaPorId() {
-        System.out.println("pesquisaPorId");
-        
+       System.out.println("pesquisaPorId");
+       buscarUsuario();
+       sessao = HibernateUtil.abrirConexao();
+       Usuario usuarioPesquisado = usuarioDao.pesquisaPorId(usuario.getId(), sessao);
+       sessao.close();
+       assertNotNull(usuarioPesquisado);
+   
     }
     
     //@Test
@@ -51,5 +58,15 @@ public class UsuarioDaoImplTest {
         usuarioDao.salvarOuAlterar(usuario, sessao);
         sessao.close();
         assertNotNull(usuario.getId());
+    }
+    
+        public Usuario buscarUsuario() {
+        //select from * usuario;
+        String hql = "from Usuario";
+        sessao = HibernateUtil.abrirConexao();
+        Query<Usuario> consulta = sessao.createQuery(hql);
+        List<Usuario> usuarios = consulta.list();
+        
+        return usuario;
     }
 }

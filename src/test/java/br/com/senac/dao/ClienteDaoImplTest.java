@@ -1,7 +1,9 @@
 package br.com.senac.dao;
 
 import br.com.senac.entidade.Cliente;
+import java.util.List;
 import org.hibernate.Session;
+import org.hibernate.query.Query;
 import static org.junit.Assert.*;
 
 /**
@@ -49,6 +51,20 @@ public class ClienteDaoImplTest {
     //@Test
     public void testPesquisaPorId() {
         System.out.println("pesquisaPorId");
-
+        buscarCliente();
+        sessao = HibernateUtil.abrirConexao();
+        Cliente clientePesquisado = clienteDao.pesquisaPorId(cliente.getId(), sessao);
+        sessao.close();
+        assertNotNull(clientePesquisado);
+    }
+    
+     public Cliente buscarCliente() {
+        //select from * cliente;
+        String hql = "from Cliente";
+        sessao = HibernateUtil.abrirConexao();
+        Query<Cliente> consulta = sessao.createQuery(hql);
+        List<Cliente> clientes = consulta.list();
+        
+        return cliente;
     }
 }

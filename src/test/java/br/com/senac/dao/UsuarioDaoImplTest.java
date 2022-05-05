@@ -52,7 +52,7 @@ public class UsuarioDaoImplTest {
         assertNull(usuarioExcluido);
     }
     
-    @Test
+//    @Test
     public void testAlterar() {
         System.out.println("Alterar");
         buscarUsuario();

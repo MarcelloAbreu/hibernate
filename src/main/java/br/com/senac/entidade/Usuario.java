@@ -1,11 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.com.senac.entidade;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import javax.persistence.*;
 
 /**
@@ -29,6 +25,8 @@ public class Usuario implements Serializable {
     
     @Column(nullable = false,length = 100)
     private String senha;
+    
+    private LocalDate ultimoAcesso;
 
     public Usuario() {
     }
@@ -71,7 +69,15 @@ public class Usuario implements Serializable {
     public void setSenha(String senha) {
         this.senha = senha;
     }
-  
+
+    public LocalDate getUltimoAcesso() {
+        return ultimoAcesso;
+    }
+
+    public void setUltimoAcesso(LocalDate ultimoAcesso) {
+        this.ultimoAcesso = ultimoAcesso;
+    }
+    
     @Override //Sobrescrita/ Herda do Objeto
     public int hashCode() {
         int hash = 0;

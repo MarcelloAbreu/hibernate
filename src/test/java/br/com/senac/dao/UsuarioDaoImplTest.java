@@ -32,7 +32,7 @@ public class UsuarioDaoImplTest {
         assertNotNull(usuario.getId());
     }
     
-    //@Test
+    @Test
     public void testPesquisaPorId() {
        System.out.println("pesquisaPorId");
        buscarUsuario();
@@ -42,7 +42,7 @@ public class UsuarioDaoImplTest {
        assertNotNull(usuarioPesquisado);
     }
     
-    //@Test
+    @Test
     public void testExcluir(){
         System.out.println("excluir");
         buscarUsuario();
@@ -53,7 +53,7 @@ public class UsuarioDaoImplTest {
         assertNull(usuarioExcluido);
     }
     
-//    @Test
+    @Test
     public void testAlterar() {
         System.out.println("Alterar");
         buscarUsuario();

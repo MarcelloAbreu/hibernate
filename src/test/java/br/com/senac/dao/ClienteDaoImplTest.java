@@ -1,6 +1,7 @@
 package br.com.senac.dao;
 
 import br.com.senac.entidade.Cliente;
+import static br.com.senac.util.GeradorUtil.*;
 import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
@@ -23,7 +24,7 @@ public class ClienteDaoImplTest {
     //@Test
     public void testSalvar() {
         System.out.println("Salvar Cliente");
-        cliente = new Cliente(null,"João", "joão@gmail","22222-222","49999-87");
+        cliente = new Cliente(null,gerarNome(),gerarLogin(),gerarCpf(),"49999-87");
         sessao = HibernateUtil.abrirConexao();
         clienteDao.salvarOuAlterar(cliente, sessao);
         sessao.close();
@@ -33,24 +34,30 @@ public class ClienteDaoImplTest {
     //@Test
     public void testExcluir(){
         System.out.println("Excluir Cliente");
-        cliente = new Cliente(Long.valueOf(1),"Joao","@joao","22222-222","49999-87");
+        buscarCliente();
         sessao = HibernateUtil.abrirConexao();
         clienteDao.excluir(cliente, sessao);
-        sessao.close();
+        //Saber se Excluiu
+        Cliente clienteExcluido = clienteDao.pesquisaPorId(cliente.getId(), sessao);
+        assertNull(clienteExcluido);
 }
      //@Test
     public void testAlterar() {
         System.out.println("Alterar Cliente");
-        cliente = new Cliente(Long.valueOf(2),"Joao","@joao","22222-222","49999-87");
+        buscarCliente();
+        cliente.setNome("Nome Alt" + gerarNome());
         sessao = HibernateUtil.abrirConexao();
         clienteDao.salvarOuAlterar(cliente, sessao);
         sessao.close();
-        assertNotNull(cliente.getId());
+        // Verificar se Alterou o Cliente
+        sessao = HibernateUtil.abrirConexao();
+        Cliente clienteAlterado = clienteDao.pesquisaPorId(cliente.getId(), sessao);
+        assertEquals(cliente.getNome(), clienteAlterado.getNome());
     }
     
     //@Test
     public void testPesquisaPorId() {
-        System.out.println("pesquisaPorId");
+        System.out.println("Pesquisa pelo Id do Cliente");
         buscarCliente();
         sessao = HibernateUtil.abrirConexao();
         Cliente clientePesquisado = clienteDao.pesquisaPorId(cliente.getId(), sessao);

@@ -1,14 +1,15 @@
 package br.com.senac.dao;
 
 import br.com.senac.entidade.Usuario;
+import static br.com.senac.util.GeradorUtil.*;
 import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
-import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.*;
 import org.junit.Test;
 
 /**
- *
+ * 
  * @author Nunes
  */
 public class UsuarioDaoImplTest {
@@ -23,7 +24,7 @@ public class UsuarioDaoImplTest {
     //@Test
     public void testSalvar() {
         System.out.println("salvar");
-        usuario = new Usuario(null,"Joao","@joao","123456");
+        usuario = new Usuario(null,gerarNome(),gerarLogin(),gerarSenha(5));
         sessao = HibernateUtil.abrirConexao();
         usuarioDao.salvarOuAlterar(usuario, sessao);
         sessao.close();
@@ -38,26 +39,36 @@ public class UsuarioDaoImplTest {
        Usuario usuarioPesquisado = usuarioDao.pesquisaPorId(usuario.getId(), sessao);
        sessao.close();
        assertNotNull(usuarioPesquisado);
-   
     }
     
     //@Test
     public void testExcluir(){
         System.out.println("excluir");
-        usuario = new Usuario(Long.valueOf(1),"Joao","@joao","123456");
+        buscarUsuario();
         sessao = HibernateUtil.abrirConexao();
         usuarioDao.excluir(usuario, sessao);
-        sessao.close();
+       //Saber se excluiu
+        Usuario usuarioExcluido = usuarioDao.pesquisaPorId(usuario.getId(), sessao);
+        assertNull(usuarioExcluido);
     }
     
     @Test
     public void testAlterar() {
         System.out.println("Alterar");
-        usuario = new Usuario(Long.valueOf(2),"Marcos","@marcos","1234567");
+        buscarUsuario();
+      
+        usuario.setNome(gerarNome());
+        usuario.setLogin(gerarLogin());
+      
         sessao = HibernateUtil.abrirConexao();
         usuarioDao.salvarOuAlterar(usuario, sessao);
         sessao.close();
-        assertNotNull(usuario.getId());
+      //Verificar se Alterou
+        sessao = HibernateUtil.abrirConexao();
+        Usuario usuarioAlt = usuarioDao.pesquisaPorId(usuario.getId(), sessao);
+        sessao.close();
+        assertEquals(usuario.getNome(), usuarioAlt.getNome());
+        assertEquals(usuario.getLogin(), usuarioAlt.getLogin());
     }
     
         public Usuario buscarUsuario() {

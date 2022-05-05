@@ -31,8 +31,7 @@ public class FornecedorDaoImplTest {
         sessao = HibernateUtil.abrirConexao();
         fornecedorDao.salvarOuAlterar(fornecedor, sessao);
         sessao.close();
-        assertNotNull(fornecedor.getId());
-        
+        assertNotNull(fornecedor.getId());    
     }
 
     //@Test
@@ -43,7 +42,6 @@ public class FornecedorDaoImplTest {
         fornecedorDao.excluir(fornecedor, sessao);
         sessao.close();
         assertNotNull(fornecedor.getId());
-
     }
 
     //@Test
@@ -53,8 +51,7 @@ public class FornecedorDaoImplTest {
         sessao = HibernateUtil.abrirConexao();
         Fornecedor fornecedorPesquisado = fornecedorDao.pesquisaPorId(fornecedor.getId(), sessao);
         sessao.close();
-        assertNotNull(fornecedorPesquisado);
-        
+        assertNotNull(fornecedorPesquisado); 
     }
     
     //@Test
@@ -65,7 +62,6 @@ public class FornecedorDaoImplTest {
         List<Fornecedor> nomePesquisado = fornecedorDao.pesquisarPorNome(fornecedor.getNome(), sessao);
         sessao.close();
         assertNotNull(nomePesquisado);
-
     }
     
     public Fornecedor buscarFornecedor(){
@@ -79,8 +75,7 @@ public class FornecedorDaoImplTest {
            testSalvarOuAlterar();
         }else{
             fornecedor = fornecedores.get(0);
-        }
-        
+        }   
         return fornecedor;
     }
 }

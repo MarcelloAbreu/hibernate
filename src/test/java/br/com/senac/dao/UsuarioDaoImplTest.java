@@ -77,7 +77,7 @@ public class UsuarioDaoImplTest {
         System.out.println("pesquisarTodo");
         buscarUsuario();
         sessao = HibernateUtil.abrirConexao();
-        List<Usuario> usuarios = usuarioDao.pesquisarTodo(sessao);
+        List<Usuario> usuarios = usuarioDao.pesquisarTodos(sessao);
         sessao.close();
         assertTrue(!usuarios.isEmpty());
     }

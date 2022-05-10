@@ -18,7 +18,7 @@ public class UsuarioDaoImpl extends BaseDaoImpl<Usuario, Long> implements Usuari
 
     @Override
     public List<Usuario> pesquisarTodos(Session sessao) throws HibernateException {
-        Query<Usuario> consulta = sessao.createQuery("Select u from Usurio u");
+        Query<Usuario> consulta = sessao.createQuery("Select u from Usuario u");
         return consulta.getResultList();
     }
 

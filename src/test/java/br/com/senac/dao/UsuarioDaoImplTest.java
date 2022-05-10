@@ -82,7 +82,7 @@ public class UsuarioDaoImplTest {
         assertTrue(!usuarios.isEmpty());
     }
 
-    @Test
+    //@Test
     public void testPesquisarPorNome() {
         System.out.println("pesquisarPorNome");
         buscarUsuario();

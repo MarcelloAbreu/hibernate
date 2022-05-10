@@ -82,11 +82,16 @@ public class UsuarioDaoImplTest {
         assertTrue(!usuarios.isEmpty());
     }
 
-    //@Test
+    @Test
     public void testPesquisarPorNome() {
         System.out.println("pesquisarPorNome");
         buscarUsuario();
-
+        sessao = HibernateUtil.abrirConexao();
+        int elemento = usuario.getNome().indexOf(" ");
+        String nome = usuario.getNome().substring(0, elemento);
+        List<Usuario> usuarios = usuarioDao.pesquisarPorNome(usuario.getNome(),sessao);
+        sessao.close();
+        assertTrue(usuarios.size() > 0);
     }
     
         public Usuario buscarUsuario() {

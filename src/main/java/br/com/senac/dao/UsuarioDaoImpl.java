@@ -24,7 +24,7 @@ public class UsuarioDaoImpl extends BaseDaoImpl<Usuario, Long> implements Usuari
 
     @Override
     public List<Usuario> pesquisarPorNome(String nome, Session sessao) throws HibernateException {
-        Query<Usuario> consulta = sessao.createQuery("from Usuario u where u nome like :nomeHql");
+        Query<Usuario> consulta = sessao.createQuery("from Usuario where nome like :nomeHql");
         consulta.setParameter("nomeHql", "%" + nome + "%");
         return consulta.getResultList();
     }

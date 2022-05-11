@@ -72,7 +72,7 @@ public class UsuarioDaoImplTest {
         assertEquals(usuario.getLogin(), usuarioAlt.getLogin());
     }
     
-    @Test
+    //@Test
     public void testPesquisarTodo() {
         System.out.println("pesquisarTodo");
         buscarUsuario();
@@ -82,7 +82,7 @@ public class UsuarioDaoImplTest {
         assertTrue(!usuarios.isEmpty());
     }
 
-    //@Test
+    @Test
     public void testPesquisarPorNome() {
         System.out.println("pesquisarPorNome");
         buscarUsuario();
@@ -91,7 +91,7 @@ public class UsuarioDaoImplTest {
         String nome = usuario.getNome().substring(0, elemento);
         List<Usuario> usuarios = usuarioDao.pesquisarPorNome(usuario.getNome(), sessao);
         sessao.close();
-        assertTrue(usuarios.size() > 0);
+        assertTrue(!usuarios.isEmpty());
     }
     
         public Usuario buscarUsuario() {

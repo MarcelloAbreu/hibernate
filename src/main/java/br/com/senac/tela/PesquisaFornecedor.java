@@ -121,11 +121,16 @@ public class PesquisaFornecedor extends javax.swing.JFrame {
         String nome = varNome.getText();
         if (nome.length() <= 2) {
             JOptionPane.showMessageDialog(null, "A pesquisa deve conter no mínino 3 caracteres");
+        }else{
+            sessao = HibernateUtil.abrirConexao();
+            fornecedores = fornecedorDao.pesquisarPorNome(nome, sessao);
+            if (fornecedores.isEmpty()) {
+                JOptionPane.showMessageDialog(null, "A pesquisa não retornou nenhum Valor!");
+            } else {
+                varNome.setText(null);
         }
-        sessao = HibernateUtil.abrirConexao();
-        fornecedores = fornecedorDao.pesquisarPorNome(nome, sessao);
         sessao.close();
-        System.out.println(fornecedores);
+        gerarTabela();
     }//GEN-LAST:event_btPesquisarActionPerformed
 
     private void gerarTabela(){

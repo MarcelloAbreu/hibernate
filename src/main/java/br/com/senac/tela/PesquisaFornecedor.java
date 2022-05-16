@@ -129,12 +129,12 @@ public class PesquisaFornecedor extends javax.swing.JFrame {
     }//GEN-LAST:event_btPesquisarActionPerformed
 
     private void gerarTabela(){
+        int linha = 1;
         DefaultTableModel tabelaModelo = (DefaultTableModel) tabelaFornecedor.getModel();
         tabelaModelo.setNumRows(0); // Limpa a Tabela
-        Object[] obj 
-        for (Fornecedor forne : fornecedores) {
-            tabelaModelo.addRow(rowData);
-            
+        for (Fornecedor forne: fornecedores) {
+            tabelaModelo.addRow(new Object[]{linha,forne.getNome(),forne.getDescricao()});
+            linha++;
         }
     }
     

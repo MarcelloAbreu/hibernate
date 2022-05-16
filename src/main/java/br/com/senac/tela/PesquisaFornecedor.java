@@ -131,6 +131,7 @@ public class PesquisaFornecedor extends javax.swing.JFrame {
         }
         sessao.close();
         gerarTabela();
+        }
     }//GEN-LAST:event_btPesquisarActionPerformed
 
     private void gerarTabela(){

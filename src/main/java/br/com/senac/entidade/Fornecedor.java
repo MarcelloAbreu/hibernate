@@ -30,6 +30,11 @@ public class Fornecedor implements Serializable {
     public Fornecedor() {
     }
 
+    public Fornecedor(String nome, String descricao) {
+        this.nome = nome;
+        this.descricao = descricao;
+    }
+   
     public Fornecedor(String nome) {
         this.nome = nome;
     }
